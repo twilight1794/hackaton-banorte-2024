@@ -1,0 +1,322 @@
+
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+    * {
+      padding: 0;
+      margin: 0;
+      outline: 0;
+      box-sizing: border-box;
+      border: 0;
+    }
+    :root {
+      font-size: 16px;
+    }
+    body {
+      font-family: 'Roboto';
+    }
+    h2 {
+      font-family: 'Montserrat';
+      font-weight: 300;
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    button {
+      font-size: 1rem;
+    }
+    input {
+      font-size: 1rem;
+    }
+    body>article {
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      z-index: 1;
+      background-size: cover;
+    }
+
+    /* Login */
+    #page_login::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('pueblo.png');
+      filter: brightness(.5);
+    }
+    #page_login form {
+      background-color: #fffa;
+      border-radius: 1.5rem;
+      max-width: 30rem;
+      min-height: 60%;
+      padding: 3rem;
+      margin-inline: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+    }
+    #page_login label {
+      margin-bottom: .5rem;
+      display: inline-block;
+    }
+    #page_login input {
+      border-radius: .5rem;
+      padding: 1rem;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    #ingresar {
+      border-radius: .5rem;
+      padding: 1rem;
+      background: #eb0029;
+      width: 100%;
+      color: white;
+    }
+    #olvidado {
+      background: transparent;
+      color: #eb0029;
+      font-weight: bold;
+      margin-left: auto;
+      margin-top: .5rem;
+      display: block;
+    }
+    #registro {
+      position: absolute;
+      bottom: 3rem;
+      text-align: center;
+      width: calc(100% - 6rem);
+    }
+
+    /* Escenario 0 */
+    #e0 {
+      background-image: url('pilares.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #413d4a;
+    }
+    /* Tarjetas */
+    .tarjeta-banorte {
+      position: absolute;
+      top: calc(100vw * .14 + ((100vh - 100vw*.57)/2));
+      width: calc(100vw / 10);
+    }
+    .tarjeta-banorte:hover {
+      filter: drop-shadow(0 0 .5rem white);
+    }
+    #tarjeta-banorte-1 {
+      left: 28%;
+    }
+    #tarjeta-banorte-2 {
+      left: 45%;
+    }
+    #tarjeta-banorte-3 {
+      left: 62%;
+    }
+    /* Escenario 1 */
+    #e1 {
+      background-image: url('pueblo.png');
+    }
+    /* Escenario 2 */
+    #e2 {
+      background-image: url('banco.png');
+    }
+    /* Escenario 3 */
+    #e3 {
+      background-image: url('panaderia.jpeg');
+    }
+
+    /* Juego */
+    .cartel, .cartelito {
+      background: #5b6670;
+      border: 4px white solid;
+      border-radius: 1.5rem;
+      font-family: 'Pixelify Sans';
+      font-size: 2rem;
+      background-repeat: no-repeat;
+      background-position: left .5rem center;
+      background-size: auto 80%;
+      box-shadow: 6px 6px 12px black;
+      color: white;
+    }
+    .cartel span, .cartelito span {
+      margin: 1rem 1rem 1rem 8rem;
+      display: block;
+    }
+    .cartelito {
+      background-position: left .5rem top .5rem;
+      background-size: auto 55%;
+    }
+    .cartelito span:first-of-type {
+      margin: 1.5rem 1rem 1rem 6rem;
+    }
+    .cartelito span:last-child {
+      margin-left: 1rem;
+      text-align: center;
+      font-size: .8em;
+      margin-top: 0;
+    }
+    .cartel-dinero {
+      background-image: url('dinero.png');
+    }
+    .cartel-credito {
+      background-image: url('credito.png');
+    }
+    .cartel-inflacion {
+      background-image: url('inflacion.png');
+    }
+    .cartel-interes {
+      background-image: url('interes.png');
+    }
+    .cartel-rendimiento {
+      background-image: url('rendimiento.png');
+    }
+
+    /* Estilos de chat */
+    #gatito-chat {
+      display: none;
+      background-color: transparent;
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 10000;
+    }
+    #gatito-chat:hover {
+      animation: tilt-shaking .25s infinite;
+    }
+    #gatito-chat img {
+      width: 5rem;
+      transform: scale(1);
+      transition: transform ease .25s;
+    }
+    #gatito-chat img:hover {
+      transform: scale(1.3);
+      transition: transform ease .25s;
+    }
+#chat {
+  display: none;
+  position: absolute;
+  bottom: 7rem;
+  right: 1rem;
+  z-index: 10000;
+}
+#chat-hist, #chat-usu {
+  background-color: #0d082c;
+  max-width: 25rem;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  font-size: smaller;
+}
+.chat-grp {
+  max-width: 85%;
+}
+.chat-grp:not(:last-child){
+  margin-bottom: 1rem;
+}
+.chat-grp-dest {
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 4px;
+}
+.chat-grp-dest>img:first-child {
+  width: 2.5rem;
+  border-radius: 50%;
+  grid-row: 1/3;
+}
+.chat-dest {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  font-weight: bold;
+}
+.chat-msg-grp {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+.chat-grp-yo {
+  margin-left: auto;
+}
+.chat-msg {
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+}
+.chat-grp-dest .chat-msg {
+  background-color: #5b6670; 
+  border-top-left-radius: 0;
+}
+.chat-grp-yo .chat-msg {
+  background-color: #eb0029;
+  border-top-right-radius: 0;
+}
+.chat-time {
+  color: gray;
+  text-align: right;
+  font-size: smaller;
+}
+.chat-grp-dest .chat-time {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+#chat-usu {
+  display: flex;
+}
+#consulta-usuario {
+  flex-grow: 1;
+  background-color: transparent;
+  color: white;
+}
+#enviar-consulta-usuario {
+  background-color: #eb0029;
+  width: 2rem;
+  height: 2rem;
+  padding: .5rem;
+  color: white;
+  border-radius: .5rem;
+  font-weight: bold;
+  line-height: 1rem;
+}
+
+/* Dialogo */
+.dialogo {
+  display: none;
+  position: absolute;
+  bottom:0;
+  left: 0;
+  width: 100%;
+  color: white;
+}
+.dialogo>div{
+  max-width: 70%;
+  margin-inline: auto;
+  position: relative;
+  margin-bottom: 2rem;
+  z-index: 10000;
+}
+.dialogo>div>div {
+  background-image: url('fondo-dialogo.svg');
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: cover;;
+  padding: .5rem;
+  min-width: 6rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  position: absolute;
+  bottom: calc(100% - .5rem);
+  left: 2rem;
+}
+.dialogo>div>p {
+  background-color: #5b6670;
+  border-radius: 2rem;
+  padding: 1rem;
+  border: white 4px solid;
+}

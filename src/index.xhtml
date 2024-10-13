@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Monarca</title>
+    <link type="text/css" rel="stylesheet" href="fonts.css" />
+    <link type="text/css" rel="stylesheet" href="estilos.css" />
+    <link type="text/css" rel="stylesheet" href="hint.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
+    <script>//<![CDATA[
+function verificarIngreso(){
+  let users = ["kaz", "xnite", "emi", "mac"];
+  //let target = document.getElementById('ingresar');
+  let usuTxt = document.getElementById('correo');
+  let contraTxt = document.getElementById('contra');
+  if (users.indexOf(usuTxt.value.trim()) == -1) {
+    usuTxt.parentNode.children[0].classList.add("hint--error", "hint--top", "hint--always");
+    usuTxt.parentNode.children[0].ariaLabel = "¡El usuario no existe!";
+  } else if (contraTxt.value.trim() != "contra") {
+    contraTxt.parentNode.children[0].classList.add("hint--error", "hint--top", "hint--always");
+    contraTxt.parentNode.children[0].ariaLabel = "¡Contraseña incorrecta!";
+  } else {
+    goToPage('e0');
+  }
+}
+function clearErrorLogin(e){
+    e.target.parentNode.children[0].classList.remove("hint--top", "hint--error", "hint--always");
+}
+function goToPage(ident){
+  let target = document.getElementById(ident);
+  target.style.zIndex = parseInt(getComputedStyle(target)["z-index"]) + 1;
+  target.style.clipPath = "circle(0% at 50% 50%)";
+  anime({
+    targets: target,
+    update: function(anim) {
+      target.style.clipPath = "circle("+anim.progress*2+"% at 50% 50%)";
+    }
+  });
+  document.getElementById("gatito-chat").style.display = target.classList.contains("escenario")?"inline-block":"none";
+}
+function enviarMensaje(){
+  // 
+  
+}
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById('correo').addEventListener('input', clearErrorLogin);
+  document.getElementById('contra').addEventListener('input', clearErrorLogin);
+  document.getElementById('gatito-chat').addEventListener('click', () => {
+    let recuadro = document.getElementById("chat");
+    if (getComputedStyle(recuadro).display == "block"){
+      recuadro.style.display = "none";
+    } else {
+      recuadro.style.display = "block";
+    }
+  });
+});
+    //]]></script>
+  </head>
+  <body>
+    <article id="e0" class="escenario">
+      <img src="tarjeta1.jpeg" class="tarjeta-banorte" id="tarjeta-banorte-1" onclick="goToPage('e1')" />
+      <img src="tarjeta2.jpeg" class="tarjeta-banorte" id="tarjeta-banorte-2" onclick="goToPage('e1')" />
+      <img src="tarjeta3.jpeg" class="tarjeta-banorte" id="tarjeta-banorte-3" onclick="goToPage('e1')" />
+    </article>
+    <article id="e1" class="escenario">
+    </article>
+    <article id="e2" class="escenario">
+    </article>
+    <article id="e3" class="escenario">
+    </article>
+    <article id="page_login">
+      <form>
+        <img src="https://ahorraseguros.mx/wp-content/uploads/2023/02/Logo_de_Banorte.svg_-1536x188.png" alt="" style="height: 1rem" />
+        <h2>Login</h2>
+        <div>
+          <label for="correo">Usuario</label>
+          <input id="correo" type="text" placeholder="Usuario" />
+        </div>
+        <div>
+          <label for="contra">Contraseña</label>
+          <input id="contra" type="password" placeholder="Password" />
+        </div>
+        <button type="button" id="ingresar" onclick="verificarIngreso()">Ingresar</button>
+        <button type="button" id="olvidado">¿Has olvidado tu contraseña?</button>
+        <div id="registro">¿Aún no tienes una cuenta? <a href="#">Regístrate gratis</a></div>
+      </form>
+      <div class="cartel cartel-dinero" style="position: absolute; top:1rem;right:1rem;"><span>$2,980</span></div>
+      <div class="cartelito cartel-interes" style="position:absolute; top:1rem;left: 1rem;"><span>46%</span><span>Interés</span></div>
+    </article>
+    <!--Anexos-->
+    <button id="gatito-chat"><img src="gatito.png" alt="¡Hazle tus preguntas al chat!" /></button>
+    <aside id="chat">
+      <div id="chat-hist">
+        <div class="chat-grp chat-grp-yo">
+          <div class="chat-msg">Hello, how are you doing?</div>
+          <div class="chat-time">08:15</div>
+        </div>
+        <div class="chat-grp chat-grp-dest">
+          <img src="profile-gato.jpeg" alt="Assistant" />
+          <div class="chat-dest">Assistant</div>
+          <div class="chat-msg-grp">
+            <div class="chat-msg">I'm doing well, thank you! How can I help you today?</div>
+          </div>
+          <div class="chat-time">08:16</div>
+        </div>
+        <div class="chat-grp chat-grp-yo">
+          <div class="chat-msg">I have a question about the return policy for a product I purchased.</div>
+          <div class="chat-time">08:17</div>
+        </div>
+      </div>
+      <div id="chat-usu">
+        <input type="text" id="consulta-usuario" placeholder="Pregunta algo..." />
+        <button type="button" id="enviar-consulta-usuario">＞</button>
+      </div>
+    </aside>
+    <aside class="dialogo">
+      <div>
+        <div>Max</div>
+        <p>Come on, let's explore our planet!</p>
+      </div>
+    </aside>
+  </body>
+</html>
