@@ -213,6 +213,8 @@
   padding: 1.5rem;
   border-radius: 1rem;
   font-size: smaller;
+  max-height: 50vh;
+  overflow: scroll;
 }
 .chat-grp {
   max-width: 85%;

@@ -37,9 +37,41 @@ function goToPage(ident){
   });
   document.getElementById("gatito-chat").style.display = target.classList.contains("escenario")?"inline-block":"none";
 }
-function enviarMensaje(){
-  // 
-  
+function sendMessage(){
+  let msgtxt = document.getElementById("consulta-usuario").value;
+  let hist = document.getElementById("chat-hist");
+  let cont = document.createElement("div");
+  cont.classList.add("chat-grp", "chat-grp-yo");
+  let msg = document.createElement("div");
+  msg.classList.add("chat-msg");
+  msg.textContent = msgtxt;
+  let time = document.createElement("div");
+  time.classList.add("chat-time");
+  cont.append(msg, time);
+  hist.append(cont);
+  fetch('https://banorteapi.campanita.xyz/chat/unitaxx', {
+  method: 'POST',
+  body: new URLSearchParams({'consulta': msgtxt})
+})
+  .then(response => response.json())
+  .then(res => {
+      let cont2 = document.createElement("div");
+      cont2.classList.add("chat-grp", "chat-grp-dest");
+      let img2 = document.createElement("img");
+      img2.src = "profile-gato.jpeg";
+      let dest = document.createElement("div");
+      dest.textContent = "Unitaxx";
+      let contcont = document.createElement("div");
+      let msg2 = document.createElement("div");
+      msg2.classList.add("chat-msg");
+      msg2.textContent = res;
+      let time = document.createElement("div");
+      time.classList.add("chat-time");
+      contcont.append(msg2);
+      cont2.append(img2, dest, contcont, time);
+      hist.append(cont2);
+  });
+  document.getElementById("consulta-usuario").value = "";
 }
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('correo').addEventListener('input', clearErrorLogin);
@@ -52,6 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
       recuadro.style.display = "block";
     }
   });
+  document.getElementById("enviar-consulta-usuario").addEventListener("click", sendMessage);
+
 });
     //]]></script>
   </head>
@@ -89,24 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <!--Anexos-->
     <button id="gatito-chat"><img src="gatito.png" alt="¡Hazle tus preguntas al chat!" /></button>
     <aside id="chat">
-      <div id="chat-hist">
-        <div class="chat-grp chat-grp-yo">
-          <div class="chat-msg">Hello, how are you doing?</div>
-          <div class="chat-time">08:15</div>
-        </div>
-        <div class="chat-grp chat-grp-dest">
-          <img src="profile-gato.jpeg" alt="Assistant" />
-          <div class="chat-dest">Assistant</div>
-          <div class="chat-msg-grp">
-            <div class="chat-msg">I'm doing well, thank you! How can I help you today?</div>
-          </div>
-          <div class="chat-time">08:16</div>
-        </div>
-        <div class="chat-grp chat-grp-yo">
-          <div class="chat-msg">I have a question about the return policy for a product I purchased.</div>
-          <div class="chat-time">08:17</div>
-        </div>
-      </div>
+      <div id="chat-hist"></div>
       <div id="chat-usu">
         <input type="text" id="consulta-usuario" placeholder="Pregunta algo..." />
         <button type="button" id="enviar-consulta-usuario">＞</button>
