@@ -5,7 +5,7 @@ import google.generativeai as genai
 
 class GC: 
     def __init__(self):
-        genai.configure(api_key="AIzaSyCHqo2xJMsbc3MUkgGSXIqkehwQxzosa34")
+        genai.configure(api_key="****")
         # self.gen_model = genai.GenerativeModel(model_name="tunedModels/unitaxx-dnpxjxbmqmcs")
         self.gen_model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
